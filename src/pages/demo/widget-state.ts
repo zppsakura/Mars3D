@@ -10,6 +10,10 @@ const widgetState: WidgetState = {
     {
       component: lazy(() => import("@mars/widgets/demo/Demo2")),
       name: "demo2"
+    },
+    {
+      component: lazy(() => import("@mars/widgets/demo/practiceDemo")),
+      name: "practice-demo"
     }
   ],
   openAtStart: ["demo2"]

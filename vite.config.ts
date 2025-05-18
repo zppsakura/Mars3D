@@ -19,7 +19,14 @@ export default ({ mode }: ConfigEnv) => {
     base: ENV.VITE_BASE_URL,
     server: {
       host: "0.0.0.0",
-      port: 4002
+      port: 4002,
+      proxy: {
+        "/data.mars3d.cn": {
+          target: "http://data.mars3d.cn",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/data.mars3d.cn/, "")
+        }
+      }
     },
     define: {
       "process.env": {

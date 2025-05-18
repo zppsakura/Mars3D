@@ -38,9 +38,19 @@ const widgetState: WidgetState = {
       component: lazy(() => import("@mars/widgets/basic/LocationPoint")),
       name: "location-point",
       group: "tools"
+    },
+    {
+      component: lazy(() => import("@mars/widgets/demo/practiceDemo")),
+      name: "practice-demo",
+      group: "tools"
+    },
+    {
+      component: lazy(() => import("@mars/widgets/basic/Roller")),
+      name: "roller",
+      group: "tools"
     }
   ],
-  openAtStart: ["toolbar", "qurey-poi"]
+  openAtStart: ["toolbar", "qurey-poi", "practice-demo", "roller"]
 }
 
 export default widgetState
