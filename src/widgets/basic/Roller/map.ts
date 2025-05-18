@@ -108,6 +108,7 @@ function initRoller() {
       // 更新位置
       roller.position = currentPosition
     }
+    // demo
 
     // 每100毫秒移动一次
     setInterval(moveRoller, 100)
