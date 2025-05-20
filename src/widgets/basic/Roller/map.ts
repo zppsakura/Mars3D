@@ -28,9 +28,10 @@ function initRoller() {
   try {
     console.log("开始创建压路机模型")
     
-    // 设置压路机位置（在高速路上）
-    const startPoint = new mars3d.LngLatPoint(116.367844, 39.905124, 0) // 调整到高速路位置
-    const endPoint = new mars3d.LngLatPoint(116.369844, 39.905124, 0) // 增加移动距离
+    // 设置压路机位置（在道路上）
+    const startPoint = new mars3d.LngLatPoint(116.388386, 39.921385)
+    const endPoint = new mars3d.LngLatPoint(116.394292, 39.921385) 
+    // 进一步增加移动距离
     
     // 创建压路机模型
     roller = new mars3d.graphic.ModelEntity({
@@ -41,8 +42,7 @@ function initRoller() {
         scale: 20.0,
         minimumPixelSize: 200,
         maximumScale: 20000,
-        clampToGround: true, // 确保模型贴地
-        height: 0, // 设置高度为0
+        clampToGround: true,
         heading: 0,
         pitch: 0,
         roll: 0,
@@ -60,7 +60,7 @@ function initRoller() {
     const path = new mars3d.graphic.PolylineEntity({
       positions: [startPoint, endPoint],
       style: {
-        width: 5,
+        width: 30,
         color: "#ff0000",
         clampToGround: true,
         dashLength: 16.0,
@@ -81,8 +81,7 @@ function initRoller() {
         // 向前移动
         currentPosition = new mars3d.LngLatPoint(
           currentPosition.lng + step,
-          currentPosition.lat,
-          0 // 保持高度为0
+          currentPosition.lat
         )
         
         // 到达终点时改变方向
@@ -94,8 +93,7 @@ function initRoller() {
         // 向后移动
         currentPosition = new mars3d.LngLatPoint(
           currentPosition.lng - step,
-          currentPosition.lat,
-          0 // 保持高度为0
+          currentPosition.lat
         )
         
         // 到达起点时改变方向
@@ -108,7 +106,6 @@ function initRoller() {
       // 更新位置
       roller.position = currentPosition
     }
-    // demo
 
     // 每100毫秒移动一次
     setInterval(moveRoller, 100)
@@ -116,10 +113,10 @@ function initRoller() {
 
     // 自动定位到压路机位置
     map.flyToPoint(startPoint, {
-      radius: 2000,
+      radius: 2000, // 增加观察距离以适应更长的路径
       duration: 2,
-      heading: 90,
-      pitch: -45, // 调整俯仰角以便更好地观察地面
+      heading: 180,
+      pitch: -30,
       complete: () => {
         console.log("相机已定位到压路机位置")
       }
