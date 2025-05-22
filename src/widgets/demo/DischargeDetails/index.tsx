@@ -95,7 +95,13 @@ export default function (props) {
             {
                 name:'单位消耗量',
                 type:'line',
-                data: [120, 200, 150, 80, 70, 110]
+                data: [120, 200, 150, 80, 70, 110],
+                lineStyle:{
+                    color:'#ffa500'
+                },
+                itemStyle:{
+                    color:'#ffa500'
+                }
             },
             {
               name: "出料重量(吨)",
@@ -126,20 +132,20 @@ export default function (props) {
       }, [chartData]);
     return (
         <MarsDialog 
-            title="" 
-            top={100} 
+            title="今日出料" 
+            top={60} 
             left={100} 
-            bottom={60} 
+            bottom={20} 
             width={700} 
             customClass={styles["practice-demo"]}
             {...props}
         >
-            <div>今日出料明细</div>
+            <div className={styles.title}>今日出料明细</div>
             <MarsTable columns={columns} dataSource={list} pagination={false} scroll={{y:350}}/>
-            <div>油料消耗趋势</div>
+            <div className={styles.title}>油料消耗趋势</div>
             <div
                 ref={chartRef}
-                style={{ width: "100%", height: "350px" }}
+                style={{ width: "100%", height: "250px" }}
             ></div>
         </MarsDialog>
     )

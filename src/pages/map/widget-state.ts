@@ -50,15 +50,20 @@ const widgetState: WidgetState = {
       group: "tools"
     },
     {
+      component: lazy(() => import("@mars/widgets/basic/mixingPlant")),
+      name: "mixing-plant",
+      group: "mixing"
+    },
+    {
       component: lazy(() => import("@mars/widgets/demo/PressureAndTemperatureRecord")),
       name: "pressure-temperature-record",
-      group: "tools"
+      group: "pressure"
     },
     {
       component: lazy(() => import("@mars/widgets/demo/DischargeDetails")),
       name: "discharge-details",
-      group: "tools"
-    }
+      group: "discharge"
+    },
   ],
   openAtStart: ["toolbar", "qurey-poi", "realtime-info", "roller", "pressure-temperature-record", "discharge-details"]
 }
