@@ -1,8 +1,10 @@
 import * as mars3d from "mars3d"
+import { activate } from "@mars/common/store/widget"
 
 let map: mars3d.Map // 地图对象
 let roller: mars3d.graphic.ModelEntity
 let rollerLabel: mars3d.graphic.LabelEntity // 添加标签对象
+let roadLabel: mars3d.graphic.LabelEntity // 路面信息标签
 let animation: any
 let isForward = true // 控制移动方向
 
@@ -23,6 +25,10 @@ export function onUnmounted(): void {
     map.graphicLayer.removeGraphic(rollerLabel)
     rollerLabel = null
   }
+  if (roadLabel) {
+    map.graphicLayer.removeGraphic(roadLabel)
+    roadLabel = null
+  }
   if (animation) {
     animation = null
   }
@@ -36,6 +42,8 @@ function initRoller() {
     // 设置压路机位置（在道路上）
     const startPoint = new mars3d.LngLatPoint(116.388386, 39.921385)
     const endPoint = new mars3d.LngLatPoint(116.394292, 39.921385) 
+    const pressure = 2.6
+    const temperature = 65
     // 进一步增加移动距离
     
     // 创建压路机模型
@@ -93,6 +101,34 @@ function initRoller() {
     })
     map.graphicLayer.addGraphic(path)
     console.log("路径已添加到地图")
+
+    // 创建路面信息标签
+    const midPoint = new mars3d.LngLatPoint(
+      (startPoint.lng + endPoint.lng) / 2,
+      (startPoint.lat + endPoint.lat) / 2
+    )
+    roadLabel = new mars3d.graphic.LabelEntity({
+      position: midPoint,
+      style: {
+        text: `路面压力: ${pressure}MPa\n路面温度: ${temperature}℃`,
+        font_size: 18,
+        color: "#ffff00",
+        outline: true,
+        outlineColor: "#000000",
+        outlineWidth: 2,
+        horizontalOrigin: 1,
+        verticalOrigin: 1,
+        pixelOffsetY: -50,
+        clampToGround: true,
+        backgroundColor: "rgba(0,0,0,0.5)",
+        padding: 10
+      }
+    })
+    map.graphicLayer.addGraphic(roadLabel)
+    roadLabel.on(mars3d.EventType.click, () => {
+      console.log("点击路面信息标签")
+    //   activate("pressure-temperature-record")
+    })
 
     // 使用 flyTo 实现动画效果
     let currentPosition = startPoint
