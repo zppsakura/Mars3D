@@ -23,7 +23,8 @@ export default function (props) {
         // { name: "路线导航", icon: "connection", widget: "query-route" },
         // { name: "卷帘对比", icon: "switch-contrast", widget: "map-split" },
         // { name: "分屏对比", icon: "full-screen-play", widget: "map-compare" },
-        { name: "练习测试", icon: "sleep", widget: "practice-demo" }
+        { name: "添加文本标注", icon: "text", widget: "add-text-label" },
+        { name: "练习测试", icon: "sleep", widget: "realtime-info" }
       ]
     }
   ]

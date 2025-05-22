@@ -2,6 +2,7 @@ import * as mars3d from "mars3d"
 
 let map: mars3d.Map // 地图对象
 let roller: mars3d.graphic.ModelEntity
+let rollerLabel: mars3d.graphic.LabelEntity // 添加标签对象
 let animation: any
 let isForward = true // 控制移动方向
 
@@ -17,6 +18,10 @@ export function onUnmounted(): void {
   if (roller) {
     map.graphicLayer.removeGraphic(roller)
     roller = null
+  }
+  if (rollerLabel) {
+    map.graphicLayer.removeGraphic(rollerLabel)
+    rollerLabel = null
   }
   if (animation) {
     animation = null
@@ -50,11 +55,30 @@ function initRoller() {
         debugShowModelMatrix: true
       }
     })
-
-    console.log("压路机模型创建完成，准备添加到地图")
-    // 将模型添加到地图
+    // 将模型和标签添加到地图
     map.graphicLayer.addGraphic(roller)
-    console.log("压路机模型已添加到地图")
+
+    // 创建压路机标签
+    rollerLabel = new mars3d.graphic.LabelEntity({
+      position: startPoint,
+      style: {
+        text: "压路机",
+        font_size: 20,
+        color: "#ffffff",
+        outline: true,
+        outlineColor: "#000000",
+        outlineWidth: 2,
+        horizontalOrigin: 1,
+        verticalOrigin: 1,
+        pixelOffsetY: -100,
+        pixelOffsetX: -35,
+        clampToGround: true
+      }
+    })
+    map.graphicLayer.addGraphic(rollerLabel)
+    rollerLabel.on(mars3d.EventType.click, () => {
+      console.log("点击压路机标签")
+    })
 
     // 创建路径线
     const path = new mars3d.graphic.PolylineEntity({
@@ -105,6 +129,7 @@ function initRoller() {
 
       // 更新位置
       roller.position = currentPosition
+      rollerLabel.position = currentPosition // 同时更新标签位置
     }
 
     // 每100毫秒移动一次

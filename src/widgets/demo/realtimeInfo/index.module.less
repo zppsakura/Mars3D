@@ -1,0 +1,33 @@
+.realtime-info {
+  position: fixed !important;
+  z-index: 1000;
+  pointer-events: auto;
+  
+  :global {
+    .mars-dialog-header {
+      cursor: move;
+    }
+  }
+} 
+.realtime-info-content {
+    margin-bottom: 20px;
+}
+.realtime-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: rgb(216, 144, 48);
+}
+.realtime-info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+
+    .realtime-info-label {
+        width: 80px;
+        text-align: left;
+    }
+    .realtime-info-value {
+        flex: 1;
+    }
+}
