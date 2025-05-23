@@ -23,7 +23,7 @@ export default function (props) {
         }
     ]
     const getList=async ()=>{
-        const url='';
+        const url='http://1.13.127.218:5000/api/sensor/history';
         const res=await axios.get(url)
     }
     useEffect(()=>{

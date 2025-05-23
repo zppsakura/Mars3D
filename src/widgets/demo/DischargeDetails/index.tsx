@@ -63,23 +63,34 @@ export default function (props) {
               axisTick: {
                 alignWithLabel: true,
               },
+              axisLabel:{
+                color:'#fff'
+              }
             },
           ],
           yAxis: [
             {
               type: "value",
               name: "燃料消耗Nm³", // 左侧 Y 轴
+              nameTextStyle:{
+                color:'#fff'
+              },
               position: "left",
               axisLabel: {
                 formatter: "{value}",
+                color:'#fff'
               },
             },
             {
               type: "value",
               name: "出料重量(吨))", // 右侧 Y 轴
+              nameTextStyle:{
+                color:'#fff'
+              },
               position: "right",
               axisLabel: {
                 formatter: "{value}",
+                color:'#fff'
               },
             },
           ],

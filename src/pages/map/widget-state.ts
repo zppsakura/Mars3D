@@ -65,7 +65,7 @@ const widgetState: WidgetState = {
       group: "discharge"
     },
   ],
-  openAtStart: ["toolbar", "qurey-poi", "realtime-info", "roller", "pressure-temperature-record", "discharge-details"]
+  openAtStart: ["toolbar", "qurey-poi", "realtime-info", "roller", "pressure-temperature-record", "discharge-details","mixing-plant"]
 }
 
 export default widgetState
